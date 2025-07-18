@@ -10,7 +10,7 @@ class GeoIPService(GeolocationService):
     def __init__(self, api_key: str):
         self.api_key = api_key
 
-class RandomGeolocationSevice(GeolocationService):
+class RandomGeolocationService(GeolocationService):
     async def resolve(self, input_str: str) -> Feature:
         """
         Returns a GeoJSON Point with random coordinates.

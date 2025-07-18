@@ -4,6 +4,8 @@ from app.core.dependencies import get_geolocation_service, get_timestamp_service
 from app.services.geolocation import GeolocationService
 from app.services.timestamp import TimestampService
 from app.services.research import ResearchService
+import geojson, json
+import uuid
 
 router = APIRouter()
 
@@ -24,8 +26,8 @@ async def verify(
     contact_info = await research_service.find_contacts(payload.identity)
 
     return VerifyResponse(
-        id="TODO_GENERATE_ID",
-        geo=location,
+        id=str(uuid.uuid4()),
+        geo=json.loads(geojson.dumps(location)),
         timestamp=timestamp,
         contacts=contact_info,
     )
