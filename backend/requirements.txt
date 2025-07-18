@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+pydantic
+geojson
+requests
+beautifulsoup4
+python-dotenv
+pendulum
+openai
+lorem-text
