@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.verify import router as verify_router
+from app.api import upload
 
 
 
@@ -17,3 +18,5 @@ app.add_middleware(
 )
 
 app.include_router(verify_router, prefix="/verify", tags=["verify"])
+
+app.include_router(upload.router)

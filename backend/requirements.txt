@@ -8,3 +8,4 @@ python-dotenv
 pendulum
 openai
 lorem-text
+python-multipart
