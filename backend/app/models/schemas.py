@@ -24,3 +24,9 @@ class VerifyResponse(BaseModel):
 # Optional geolocation result model (if used separately)
 class GeolocationResult(BaseModel):
     location: Dict[str, Any]    # Serialized GeoJSON Feature (as dict)
+
+class UploadResponse(BaseModel):
+    filename: str    # no regex → accepts any string
+    size:     int
+    path:     str
+    provider: str

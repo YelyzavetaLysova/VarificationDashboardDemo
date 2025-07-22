@@ -1,7 +1,7 @@
 from app.services.geolocation import RandomGeolocationService, GeolocationService
 from app.services.timestamp import RandomTimestampService, TimestampService
 from app.services.research import RandomResearchService, ResearchService
-from app.services.fileupload import DefaultUploadService, EchoUploadService
+from app.services.fileupload import FileSystemUploadService
 
 
 def get_geolocation_service() -> GeolocationService:
@@ -18,8 +18,8 @@ def get_research_service() -> ResearchService:
 
 def get_upload_service(provider: str = "default"):
     if provider == "default":
-        return DefaultUploadService()
+        return FileSystemUploadService()
     elif provider == "echo":
-        return EchoUploadService()
+        return FileSystemUploadService()
     else:
         raise ValueError(f"Unknown provider: {provider}")
