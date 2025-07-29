@@ -6,10 +6,12 @@ import './style.css';
 
 // Page-level components
 import LandingPage from './pages/LandingPage.jsx';
-import Dashboard from './pages/Dashboard.jsx';
+import UploadPage from './pages/UploadPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 import VerifyPage from './pages/VerifyPage.jsx';
+import ChooseKeyframePage from "./pages/ChooseKeyframePage.jsx";
+import WorkspacePage from "./pages/WorkspacePage.jsx";
 
 // Utility pages (if needed)
 import FormBasic from './components/FormBasic.jsx';
@@ -24,10 +26,13 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/upload" element={<UploadPage />} />
         <Route path="/verify" element={<VerifyPage />} />
+        <Route path="/select-keyframe" element={<ChooseKeyframePage />} />
+        <Route path="/workspace" element={<WorkspacePage />} />
 
         {/* Protected / main app routes */}
-        <Route path="/dashboard" element={<Dashboard />} />
+        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
 
         {/* Utility routes */}
         <Route path="/form-basic" element={<FormBasic />} />

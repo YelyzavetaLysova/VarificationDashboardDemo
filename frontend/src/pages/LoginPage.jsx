@@ -45,7 +45,7 @@ export default function LoginPage() {
       // Save user info to localStorage
       localStorage.setItem("user", JSON.stringify(data));
       // Redirect to dashboard
-      navigate("/dashboard");
+      navigate("/upload");
     } catch (err) {
       setError(err.message);
     } finally {
