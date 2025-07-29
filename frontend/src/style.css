@@ -1,17 +1,24 @@
-body {
-  font-family: sans-serif;
-  padding: 1rem;
+/* style.css */
+
+/* Constrain hero text width */
+.hero-container {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-input {
+/* Card title contrast */
+.card-title {
+  color: #333;
+}
+
+/* Footer text sizing */
+footer small {
   display: block;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-  width: 100%;
-  max-width: 400px;
+  line-height: 1.6;
+  font-size: 0.85rem;
 }
 
-button {
-  padding: 0.5rem 1rem;
-  margin-top: 0.5rem;
+/* Pill-button hover shadow */
+button.rounded-pill:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

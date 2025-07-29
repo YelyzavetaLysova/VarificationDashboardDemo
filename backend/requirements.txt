@@ -9,3 +9,5 @@ pendulum
 openai
 lorem-text
 python-multipart
+aiofiles
+pydantic[email]

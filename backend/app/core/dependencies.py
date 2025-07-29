@@ -2,6 +2,7 @@ from app.services.geolocation import RandomGeolocationService, GeolocationServic
 from app.services.timestamp import RandomTimestampService, TimestampService
 from app.services.research import RandomResearchService, ResearchService
 from app.services.fileupload import FileSystemUploadService
+from app.services.auth import UserService
 
 
 def get_geolocation_service() -> GeolocationService:
@@ -23,3 +24,6 @@ def get_upload_service(provider: str = "default"):
         return FileSystemUploadService()
     else:
         raise ValueError(f"Unknown provider: {provider}")
+    
+def get_user_service() -> UserService:
+    return UserService()
