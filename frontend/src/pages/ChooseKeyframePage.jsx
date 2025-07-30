@@ -1,6 +1,9 @@
+// src/pages/ChooseKeyframePage.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Logo from "../components/Logo.jsx";
+import SettingsMenu from "../components/SettingsMenu.jsx";
+import BottomNav from "../components/BottomNav.jsx";
 
 const FRAMES = Array.from({ length: 36 }, (_, i) => i + 1);
 
@@ -9,34 +12,41 @@ export default function ChooseKeyframePage() {
   const navigate = useNavigate();
 
   const handleSelect = (index) => setSelected(index);
-
-  const handleNext = () => {
-    // You can send selected frame to backend here if needed
-    navigate("/workspace");
-  };
-
-  const handleSkip = () => {
-    // You can send info about skipping here if needed
-    navigate("/workspace");
-  };
+  const handleNext   = () => navigate("/workspace");
+  const handleSkip   = () => navigate("/workspace");
 
   return (
     <div style={{ minHeight: "100vh", background: "#fafbfc" }}>
       {/* Navbar */}
-      <div style={{ borderBottom: "1px solid #f2f2f2", height: 60, display: "flex", alignItems: "center", paddingLeft: 28 }}>
-        <img src="/mediafutures-logo.png" height="28" alt="Media Futures" style={{ marginRight: 16 }} />
-        <span style={{ fontWeight: 700, fontSize: 24, letterSpacing: 0, color: "#222" }}>
-          Analytic Vision Dashboard
-        </span>
+      <div
+        style={{
+          borderBottom: "1px solid #f2f2f2",
+          height: 60,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "0 28px",
+        }}
+      >
+        {/* Left: Logo linking home */}
+        <Logo />
+
+        {/* Right: Settings dropdown */}
+        <SettingsMenu onLogout={() => navigate("/login")} />
       </div>
 
       <div className="container" style={{ maxWidth: 1200, margin: "36px auto 0" }}>
         <div className="d-flex justify-content-between align-items-center mb-2">
           <h3 style={{ fontWeight: 600, fontSize: 26 }}>Select a Keyframe</h3>
-          <button className="btn btn-link" style={{ color: "#888", fontWeight: 500, fontSize: 18, textDecoration: "none" }} onClick={handleSkip}>
+          <button
+            className="btn btn-link"
+            style={{ color: "#888", fontWeight: 500, fontSize: 18, textDecoration: "none" }}
+            onClick={handleSkip}
+          >
             Skip
           </button>
         </div>
+
         <div
           style={{
             display: "grid",
@@ -55,7 +65,7 @@ export default function ChooseKeyframePage() {
               key={num}
               tabIndex={0}
               onClick={() => handleSelect(idx)}
-              onKeyDown={e => (e.key === "Enter" || e.key === " ") && handleSelect(idx)}
+              onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && handleSelect(idx)}
               style={{
                 border: selected === idx ? "2px solid #27b86f" : "1.5px solid #d4d7df",
                 borderRadius: 8,
@@ -68,24 +78,25 @@ export default function ChooseKeyframePage() {
                 cursor: "pointer",
                 boxShadow: selected === idx ? "0 0 0 2px #b1f0ce" : "none",
                 outline: "none",
-                transition: "border .15s, box-shadow .15s"
+                transition: "border .15s, box-shadow .15s",
               }}
             >
-              {/* Frame preview could go here in the future */}
-              <div style={{
-                width: "100%",
-                background: "none",
-                borderTop: "1px solid #e5e5e5",
-                padding: "6px 0 3px",
-                textAlign: "center",
-                fontSize: 15,
-                color: "#444"
-              }}>
+              <div
+                style={{
+                  width: "100%",
+                  borderTop: "1px solid #e5e5e5",
+                  padding: "6px 0 3px",
+                  textAlign: "center",
+                  fontSize: 15,
+                  color: "#444",
+                }}
+              >
                 Frame {num}
               </div>
             </div>
           ))}
         </div>
+
         {/* Next button */}
         <div className="d-flex justify-content-end">
           <button
@@ -99,19 +110,8 @@ export default function ChooseKeyframePage() {
         </div>
       </div>
 
-      {/* Footer nav */}
-      <div style={{
-        position: "fixed", bottom: 0, left: 0, width: "100%",
-        background: "#f8fafd", borderTop: "1px solid #e2e7ef",
-        display: "flex", justifyContent: "center", alignItems: "center", height: 52, zIndex: 99
-      }}>
-        <div style={{ display: "flex", gap: 0, width: 440 }}>
-          <button className="btn btn-link px-4 py-2" style={{ color: "#222", fontWeight: 500, borderRadius: 0 }}>View 1</button>
-          <button className="btn btn-link px-4 py-2" style={{ color: "#222", fontWeight: 500, borderRadius: 0 }}>View 2</button>
-          <button className="btn btn-link px-4 py-2" style={{ color: "#222", fontWeight: 500, borderRadius: 0 }}>View 3</button>
-          <button className="btn btn-light px-4 py-2" style={{ color: "#6e7687", fontWeight: 500, borderRadius: 8, marginLeft: 16, border: "1px solid #e2e7ef", background: "#f2f5fb" }}>New View</button>
-        </div>
-      </div>
+      {/* Bottom navigation */}
+      <BottomNav />
     </div>
   );
 }

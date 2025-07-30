@@ -16,6 +16,8 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../style.css";
 
+import Logo from "../components/Logo.jsx";
+
 export default function SignupPage() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -49,9 +51,7 @@ export default function SignupPage() {
         throw new Error(data.detail || "Signup failed");
       }
 
-      // Optionally store user info
       localStorage.setItem("user", JSON.stringify(data));
-      // Redirect to login or dashboard
       navigate("/login");
     } catch (err) {
       setError(err.message);
@@ -65,14 +65,7 @@ export default function SignupPage() {
       {/* Navbar */}
       <Navbar bg="light" expand="lg" className="px-5 py-3 shadow-sm">
         <Container fluid>
-          <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
-            <img
-              src="/mediafutures-logo.png"
-              height="32"
-              alt="Media Futures"
-            />
-            <span className="ms-3 fs-4 fw-bold">Analytic Vision</span>
-          </Navbar.Brand>
+          <Navbar.Brand as={Logo} />
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/login">
               Log In
@@ -162,8 +155,7 @@ export default function SignupPage() {
 
                   <div className="text-center">
                     <small className="text-muted">
-                      Already have an account?{" "}
-                      <Link to="/login">Log in here</Link>
+                      Already have an account? <Link to="/login">Log in here</Link>
                     </small>
                   </div>
                 </Form>

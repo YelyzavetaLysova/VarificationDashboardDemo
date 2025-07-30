@@ -9,7 +9,6 @@ import LandingPage from './pages/LandingPage.jsx';
 import UploadPage from './pages/UploadPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
-import VerifyPage from './pages/VerifyPage.jsx';
 import ChooseKeyframePage from "./pages/ChooseKeyframePage.jsx";
 import WorkspacePage from "./pages/WorkspacePage.jsx";
 
@@ -27,7 +26,6 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/upload" element={<UploadPage />} />
-        <Route path="/verify" element={<VerifyPage />} />
         <Route path="/select-keyframe" element={<ChooseKeyframePage />} />
         <Route path="/workspace" element={<WorkspacePage />} />
 

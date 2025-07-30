@@ -1,5 +1,6 @@
 // src/pages/LandingPage.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Navbar,
   Nav,
@@ -13,12 +14,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../style.css";
 
 export default function LandingPage() {
+  const navigate = useNavigate();
+
   return (
     <>
       {/* Navbar */}
       <Navbar bg="light" expand="lg" className="px-5 py-3 shadow-sm">
         <Container fluid>
-          <Navbar.Brand href="#" className="d-flex align-items-center">
+          <Navbar.Brand as="div" className="d-flex align-items-center">
             <img
               src="/mediafutures-logo.png"
               height="32"
@@ -27,10 +30,10 @@ export default function LandingPage() {
             <span className="ms-3 fs-4 fw-bold">Analytic Vision</span>
           </Navbar.Brand>
           <Nav className="ms-auto">
-            <Nav.Link href="/login" className="px-3">
+            <Nav.Link onClick={() => navigate("/login")} className="px-3">
               Log In
             </Nav.Link>
-            <Nav.Link href="/signup" className="px-3">
+            <Nav.Link onClick={() => navigate("/signup")} className="px-3">
               Sign Up
             </Nav.Link>
           </Nav>
@@ -45,7 +48,12 @@ export default function LandingPage() {
             Rapidly upload, inspect, and analyze your video keyframes&nbsp;–
             all within a single, intuitive dashboard.
           </p>
-          <Button variant="primary" size="lg" className="me-2">
+          <Button
+            variant="primary"
+            size="lg"
+            className="me-2"
+            onClick={() => navigate("/signup")}
+          >
             Get Started
           </Button>
         </Container>
@@ -84,7 +92,12 @@ export default function LandingPage() {
       <section className="bg-primary text-white text-center py-4">
         <Container>
           <h2 className="mb-3">Ready to get started?</h2>
-          <Button variant="light" size="lg" className="rounded-pill px-4">
+          <Button
+            variant="light"
+            size="lg"
+            className="rounded-pill px-4"
+            onClick={() => navigate("/signup")}
+          >
             Create Your Account
           </Button>
         </Container>

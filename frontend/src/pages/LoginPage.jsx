@@ -16,6 +16,8 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../style.css";
 
+import Logo from "../components/Logo.jsx";
+
 export default function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -44,7 +46,7 @@ export default function LoginPage() {
 
       // Save user info to localStorage
       localStorage.setItem("user", JSON.stringify(data));
-      // Redirect to dashboard
+      // Redirect to upload (or dashboard)
       navigate("/upload");
     } catch (err) {
       setError(err.message);
@@ -58,10 +60,7 @@ export default function LoginPage() {
       {/* Navbar */}
       <Navbar bg="light" expand="lg" className="px-5 py-3 shadow-sm">
         <Container fluid>
-          <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
-            <img src="/mediafutures-logo.png" height="32" alt="Media Futures" />
-            <span className="ms-3 fs-4 fw-bold">Analytic Vision</span>
-          </Navbar.Brand>
+          <Navbar.Brand as={Logo} />
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/login" active>
               Log In
@@ -74,7 +73,10 @@ export default function LoginPage() {
       </Navbar>
 
       {/* Login Form */}
-      <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "75vh" }}>
+      <Container
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "75vh" }}
+      >
         <Row className="w-100 justify-content-center">
           <Col md={6} lg={4}>
             <Card className="shadow-sm">
@@ -107,15 +109,23 @@ export default function LoginPage() {
                   </Form.Group>
 
                   <div className="d-grid mb-3">
-                    <Button variant="primary" size="lg" type="submit" disabled={loading}>
-                      {loading && <Spinner animation="border" size="sm" className="me-2" />}
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      type="submit"
+                      disabled={loading}
+                    >
+                      {loading && (
+                        <Spinner animation="border" size="sm" className="me-2" />
+                      )}
                       {loading ? "Logging in…" : "Log In"}
                     </Button>
                   </div>
 
                   <div className="text-center">
                     <small className="text-muted">
-                      Don’t have an account? <Link to="/signup">Sign up here</Link>
+                      Don’t have an account?{" "}
+                      <Link to="/signup">Sign up here</Link>
                     </small>
                   </div>
                 </Form>
@@ -127,7 +137,9 @@ export default function LoginPage() {
 
       {/* Footer */}
       <footer className="text-center text-muted py-3">
-        <small>© {new Date().getFullYear()} Media Futures – Analytic Vision Dashboard</small>
+        <small>
+          © {new Date().getFullYear()} Media Futures – Analytic Vision Dashboard
+        </small>
       </footer>
     </>
   );
