@@ -1,10 +1,10 @@
 from fastapi import APIRouter, File, UploadFile, Depends, HTTPException
 from app.core.dependencies import get_upload_service
-from app.services.fileupload import FileSystemUploadService, DefaultUploadService, EchoUploadService
+from app.services.fileupload import FileSystemUploadService
 
-router = APIRouter()
+router = APIRouter(prefix="/uaapload", tags=["upload"])
 
-@router.post("/", summary="Upload a file")
+@router.post("/aaa",  summary="Upload a file")
 async def upload_file(
     file: UploadFile = File(...),
     # FastAPI will call get_upload_service() for you

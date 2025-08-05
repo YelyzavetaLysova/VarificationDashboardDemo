@@ -11,3 +11,7 @@ lorem-text
 python-multipart
 aiofiles
 pydantic[email]
+moviepy
+motor
+pydantic-settings
+opencv-python

@@ -25,7 +25,7 @@ class UserResponse(BaseModel):
     email: EmailStr
 
 
-# Signup endpoint (already working)
+# Signup endpoint
 @router.post(
     "/signup",
     response_model=UserResponse,
@@ -37,15 +37,18 @@ async def signup(
     user_svc: UserService = Depends(get_user_service),
 ):
     try:
-        user = user_svc.register(payload.name, payload.email, payload.password)
+        user = await user_svc.register(payload.name, payload.email, payload.password)
         return user
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Could not register user: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Could not register user: {e}",
+        )
 
 
-# NEW: Login endpoint
+# Login endpoint
 @router.post(
     "/login",
     response_model=UserResponse,
@@ -55,7 +58,7 @@ async def login(
     payload: LoginRequest,
     user_svc: UserService = Depends(get_user_service),
 ):
-    user = user_svc.authenticate(payload.email, payload.password)
+    user = await user_svc.authenticate(payload.email, payload.password)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
